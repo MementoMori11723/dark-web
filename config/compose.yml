@@ -11,15 +11,15 @@ services:
       - darknet
 
   tor:
-    image: dperson/torproxy
-    container_name: tor-hidden-service
-    volumes:
-      - ./tor/torrc:/etc/tor/torrc
-      - ./tor/data:/var/lib/tor/hidden_service
+    build:
+      context: ../
+      dockerfile: config/tor/Dockerfile
+    container_name: tor
+    restart: always
+    expose:
+      - "80"
     networks:
       - darknet
-    command: -f /etc/tor/torrc
-    restart: unless-stopped
 
 networks:
   darknet:
