@@ -16,8 +16,6 @@ services:
       dockerfile: config/tor/Dockerfile
     container_name: tor
     restart: always
-    expose:
-      - "80"
     networks:
       - darknet
 
