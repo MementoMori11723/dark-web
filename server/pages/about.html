@@ -1,5 +1,57 @@
+<!-- Title -->
+{{define "title"}}About This Hidden Service{{end}}
+
+<!-- Content -->
 {{define "main"}}
-<main>
-  <h1>About page</h1>
-</main>
+<section>{{template "navbar" .}}</section>
+<section>
+  <p>
+    This hidden service was created to provide a space where people can access
+    information and services without fear of surveillance, censorship, or
+    profiling.
+  </p>
+
+  <h2>Why It Exists</h2>
+  <p>
+    The internet is no longer a free space. Mass surveillance, censorship laws,
+    and data exploitation have made privacy a privilege rather than a right.
+    This project aims to reclaim some of that freedom by operating within the
+    Tor network.
+  </p>
+
+  <h2>Core Principles</h2>
+  <ol>
+    <li>
+      <strong>Freedom of Access</strong>: Anyone with Tor can visit — there is
+      no geoblocking or censorship here.
+    </li>
+    <li>
+      <strong>Data Minimalism</strong>: We collect as little data as possible —
+      ideally none.
+    </li>
+    <li>
+      <strong>Security by Design</strong>: No trackers. No third-party scripts.
+      No leaks.
+    </li>
+    <li>
+      <strong>Decentralization Friendly</strong>: We support projects like IPFS,
+      Tails, and Monero.
+    </li>
+  </ol>
+
+  <blockquote>
+    "In a world where surveillance is the norm, privacy becomes resistance."
+  </blockquote>
+
+  <h2>We Recommend</h2>
+  <ul>
+    <li>Use <strong>Tails OS</strong> if your life depends on anonymity.</li>
+    <li>
+      Enable <strong>JavaScript blocking</strong> if you’re unsure of the site’s
+      safety.
+    </li>
+    <li>Verify any .onion addresses through trusted channels.</li>
+  </ul>
+</section>
+<section>{{template "footer" .}}</section>
 {{end}}

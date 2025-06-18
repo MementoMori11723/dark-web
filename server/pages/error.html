@@ -1,5 +1,22 @@
+<!-- Title -->
+{{define "title"}} Error! {{end}}
+
+<!-- Content -->
 {{define "main"}}
-<main>
-  <h1>Error page</h1>
-</main>
+<section>
+  <style>
+    main {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  </style>
+  <h2>{{.Title}}</h2>
+  <p>This is due to:</p>
+  <p>{{.Msg}}</p>
+  <p>Please check the URL or go back to the <a href="/#">homepage</a>.</p>
+  <p>If the issue continues, it may be a server or network problem.</p>
+</section>
 {{end}}
