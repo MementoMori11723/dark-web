@@ -1,0 +1,24 @@
+services:
+  web:
+    build:
+      context: ../
+      dockerfile: config/Dockerfile
+    container_name: web
+    restart: always
+    expose:
+      - "80"
+    networks:
+      - darknet
+
+  tor:
+    build:
+      context: ../
+      dockerfile: config/tor/Dockerfile
+    container_name: tor
+    restart: always
+    networks:
+      - darknet
+
+networks:
+  darknet:
+    driver: bridge

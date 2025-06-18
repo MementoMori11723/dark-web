@@ -1,10 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ template "title" .}}</title>
+  <style>
+    body {
+      margin: 40px auto;
+      max-width: 650px;
+      line-height: 1.6;
+      font-size: 18px;
+      color: #444;
+      padding: 0 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+    }
+  </style>
 </head>
+
 <body>
-  {{ template "main" .}} 
+  <main>{{ template "main" .}}</main>
 </body>
+
 </html>
+
+<!-- Navbar component -->
+{{define "navbar"}}
+<header>
+  <h1>Welcome to Our Hidden Service</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="/#">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</nav>
+{{end}}
+
+<!-- Footer component -->
+{{define "footer"}}
+<footer>
+  <p>&copy; Hidden Service — Privacy is Freedom — Stay safe</p>
+</footer>
+{{end}}
