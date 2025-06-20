@@ -3,43 +3,29 @@
 
 <!-- Content -->
 {{define "main"}}
-<section>{{template "navbar" .}}</section>
 <section>
-  <p>
-    This site is hosted on the Tor network and can only be accessed using the
-    <strong>Tor Browser</strong>.
-  </p>
+  <style>
+    section {
+      display: block;
+      box-sizing: border-box;
 
-  <h2>How to Connect</h2>
-  <ol>
-    <li>
-      Download the official Tor Browser from
-      <a href="https://www.torproject.org" target="_blank">https://www.torproject.org</a>
-    </li>
-    <li>Install and open the browser.</li>
-    <li>
-      Enter this address in the browser’s URL bar:
-      <strong><code>http://examplehiddenservice.onion</code></strong>
-    </li>
-    <li>
-      Do not try to access this site with regular browsers — it will not work.
-    </li>
-  </ol>
-
-  <h2>Before You Proceed</h2>
-  <ul>
-    <li>Never share personal information.</li>
-    <li>Use anonymous usernames and strong passwords.</li>
-    <li>Do not reuse credentials from other websites.</li>
-    <li>
-      Use an operating system designed for anonymity if possible (e.g., Tails).
-    </li>
-  </ul>
-
-  <p>
-    By using this site, you agree to follow safe browsing practices and take
-    full responsibility for your anonymity and security.
-  </p>
+      &.sub {
+        min-height: 60rem;
+        max-width: 100%;
+      }
+    }
+  </style>
+  <section class="sub">
+    <h1>Welcome to the dark-web!</h1>
+  </section>
+  <section class="sub">
+    <h2>Histroy of the dark web</h2>
+  </section>
+  <section class="sub">
+    <h2>Safties of the dark web</h2>
+  </section>
+  <section class="sub">
+    <h2>About Us</h2>
+  </section>
 </section>
-<section>{{template "footer" .}}</section>
 {{end}}
