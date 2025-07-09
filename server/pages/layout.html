@@ -1,63 +1,37 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ template "title" .}}</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
+<html lang="en" x-data="{ theme:'light' }" :data-theme="theme">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Rubik Glitch", system-ui;
-        line-height: 1.6;
-        color: #444;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ template "title" .}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style></style>
+</head>
 
-        & main {
-          margin: 40px auto;
-          max-width: 650px;
-          padding: 0 10px;
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li>Dark Web</li>
+    </ul>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+    <ul>
+      <li>
+        <button type="button" @click="$data.theme = ($data.theme === 'light') ? 'dark' : 'light'"
+          x-text="$data.theme === 'light' ? 'Dark mode' : 'Light mode'">
+          Dark mode
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <main class="container">{{ template "main" .}}</main>
+  <footer class="container">
+    <p>&copy; Hidden Service — Privacy is Freedom — Stay safe</p>
+  </footer>
+</body>
 
-          & p {
-            font-size: 18px;
-          }
-
-          & nav {
-            margin: 10px auto;
-            font-size: 20px;
-          }
-        }
-      }
-
-      h1,
-      h2,
-      h3 {
-        line-height: 1.2;
-      }
-    </style>
-  </head>
-
-  <body>
-    <nav class="container-fluid">
-      <ul>
-        <li>Logo</li>
-      </ul>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </nav>
-    <main>{{ template "main" .}}</main>
-    <footer>
-      <p>&copy; Hidden Service — Privacy is Freedom — Stay safe</p>
-    </footer>
-  </body>
 </html>
