@@ -27,10 +27,10 @@ var (
 	_errorTempl *template.Template
 
 	_routes = routes{
-		"/":      indexPage,
-		"/404":   pageNotFound,
-		"/about": aboutPage,
-		"/error": errorPage,
+		"/":       indexPage,
+		"/404/":   pageNotFound,
+		"/about/": aboutPage,
+		"/error/": errorPage,
 	}
 )
 
