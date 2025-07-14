@@ -1,100 +1,108 @@
 <!doctype html>
-<html lang="en" x-data="{ theme: $persist('dark')  }" :data-theme="theme">
-  <head>
-    <!-- Meta Data -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ template "title" .}}</title>
+<html lang="en" x-data="{ theme: $persist('light') }" :data-theme="theme">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <!-- Meta Data -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ template "title" .}}</title>
+  <link rel="icon" href="/assets/tor.png" />
 
-    <!-- Pico CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Alpine.js Plugins -->
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"
-    ></script>
+  <!-- Pico CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
 
-    <!-- Alpine.js -->
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
+  <!-- Alpine.js Plugins -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Custom Code -->
-    <style>
-      :root {
-        --pico-font-family: "Anonymous Pro", monospace;
-        --pico-background-color: #06070e;
-        --pico-color: white;
-        --pico-primary: #ec4e20;
-        --pico-primary-hover: #ec4e20;
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Custom Code -->
+  <style>
+    :root {
+      --pico-font-family: "Anonymous Pro", monospace;
+      --pico-background-color: #06070e;
+      --pico-color: white;
+      --pico-primary: #ec4e20;
+      --pico-primary-hover: #ec4e20;
+    }
+
+    [data-theme="light"],
+    :root:not([data-theme="dark"]),
+    :host(:not([data-theme="dark"])) {
+      color-scheme: light;
+      --pico-background-color: white;
+      --pico-color: #06070e;
+      --pico-primary: #ec4e20;
+      --pico-primary-hover: #ec4e20;
+    }
+
+    nav {
+      top: 0;
+      position: sticky;
+      justify-content: space-between;
+      background-color: transparent;
+      transition: all 0.2s;
+
+      #logo {
+        font-size: 1.2rem;
+        font-style: italic;
+        font-weight: bold;
       }
+    }
 
-      [data-theme="light"],
-      :root:not([data-theme="dark"]),
-      :host(:not([data-theme="dark"])) {
-        color-scheme: light;
-        --pico-background-color: white;
-        --pico-color: #06070e;
-        --pico-primary: #ec4e20;
-        --pico-primary-hover: #ec4e20;
-      }
+    .scrolled {
+      z-index: 1000;
+      background-color: var(--pico-background-color);
+      box-shadow: 0 1px 5px color-mix(in srgb, var(--pico-color) 25%, transparent);
+    }
+  </style>
 
-      nav {
-        #logo {
-          font-size: 1.2rem;
-          font-style: italic;
-          font-weight: bold;
-
-          .left,
-          .right {
-            margin: 0;
-            padding: 0;
-            font-size: 1rem;
-          }
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navbar = document.getElementById("navbar");
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
         }
-      }
-    </style>
-  </head>
+      });
+    });
+  </script>
+</head>
 
-  <body>
-    <nav class="container-fluid">
-      <ul>
-        <li id="logo">
-          <span class="left"></span>
-          <span>The-Dark-Web</span>
-          <span class="right"></span>
-        </li>
-      </ul>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li>
-          <a
-            class="mode"
-            @click="$data.theme = ($data.theme === 'light') ? 'dark' : 'light'"
-            x-text="$data.theme === 'light' ? 'Dark mode' : 'Light mode'"
-          >
-            Dark mode
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <main class="container">{{ template "main" .}}</main>
-    <footer class="container" style="text-align: center">
-      <p>&copy; Hidden Service — Privacy is Freedom — Stay safe</p>
-    </footer>
-  </body>
+<body>
+  <nav class="container-fluid" id="navbar">
+    <ul>
+      <li id="logo">
+        <span>The Dark Web</span>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="/"><b>Home</b></a>
+      </li>
+      <li>
+        <a href="/about"><b>About</b></a>
+      </li>
+      <li>
+        <a class="mode" @click="$data.theme = ($data.theme === 'light') ? 'dark' : 'light'">
+          <b x-text="$data.theme === 'light' ? 'Dark mode' : 'Light mode'"></b>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="container">{{ template "main" .}}</main>
+  <footer class="container" style="text-align: center">
+    <p>&copy; Hidden Service — Privacy is Freedom — Stay safe</p>
+  </footer>
+</body>
+
 </html>

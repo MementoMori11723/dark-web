@@ -19,6 +19,9 @@ var (
 	//go:embed pages
 	_pages embed.FS
 
+	//go:embed assets
+	_assets embed.FS
+
 	_dir    = "pages/"
 	_layout = _dir + "layout.html"
 
@@ -50,6 +53,7 @@ func getTemplate(filename string) *template.Template {
 
 func New() *http.ServeMux {
 	_mux := http.NewServeMux()
+	_mux.Handle("/assets/", http.FileServerFS(_assets))
 	for _route, _handler := range _routes {
 		_mux.HandleFunc(_route, _handler)
 	}
