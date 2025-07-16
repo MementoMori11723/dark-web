@@ -10,7 +10,7 @@ import (
 func main() {
 	_mux := server.New()
 	_server := http.Server{
-		Addr:    ":80",
+		Addr:    ":8080",
 		Handler: _mux,
 	}
 	slog.SetDefault(

@@ -8,7 +8,8 @@ import (
 )
 
 type (
-	routes    map[string]http.HandlerFunc
+	routes map[string]http.HandlerFunc
+
 	errorType struct {
 		Title string
 		Msg   string
@@ -55,7 +56,12 @@ func New() *http.ServeMux {
 	_mux := http.NewServeMux()
 	_mux.Handle("/assets/", http.FileServerFS(_assets))
 	for _route, _handler := range _routes {
-		_mux.HandleFunc(_route, _handler)
+		_mux.HandleFunc(
+			_route,
+			middleware(
+				_handler,
+			),
+		)
 	}
 	return _mux
 }
@@ -96,4 +102,11 @@ func errorPage(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal error!", http.StatusInternalServerError)
 		slog.Error(err.Error())
 	}
+}
+
+func middleware(next http.HandlerFunc) http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Onion-Location", "http://darkwebesfjvte55dyjbkf5epqnce5g3td3rzpco7qehpwxrdrevwuyd.onion")
+		next.ServeHTTP(w, r)
+	})
 }
