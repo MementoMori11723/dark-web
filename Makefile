@@ -1,5 +1,7 @@
 run :
-	@docker-compose -f config/compose.yml -p deploy up --build -d 
-	@docker exec -it tor sh -c "cat /var/lib/tor/hidden_service/hostname"
+	@docker-compose -f config/compose.yml -p darkweb up --build -d 
 stop :
-	@docker-compose -f config/compose.yml -p deploy down  --remove-orphans
+	@docker-compose -f config/compose.yml -p darkweb down  --remove-orphans
+
+dev:
+	@PORT=8080 go run .

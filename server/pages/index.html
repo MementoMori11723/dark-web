@@ -1,45 +1,91 @@
 <!-- Title -->
-{{define "title"}}Welcome to dark web!{{end}}
+{{define "title"}}The Dark Web{{end}}
 
 <!-- Content -->
 {{define "main"}}
-<section>{{template "navbar" .}}</section>
 <section>
-  <p>
-    This site is hosted on the Tor network and can only be accessed using the
-    <strong>Tor Browser</strong>.
-  </p>
+  <style>
+    .sub {
+      display: block;
+      min-height: 100vh;
+      text-align: center;
+      margin: 5rem;
 
-  <h2>How to Connect</h2>
-  <ol>
-    <li>
-      Download the official Tor Browser from
-      <a href="https://www.torproject.org" target="_blank">https://www.torproject.org</a>
-    </li>
-    <li>Install and open the browser.</li>
-    <li>
-      Enter this address in the browser’s URL bar:
-      <strong><code>http://examplehiddenservice.onion</code></strong>
-    </li>
-    <li>
-      Do not try to access this site with regular browsers — it will not work.
-    </li>
-  </ol>
+      h1 {
+        font-size: 7rem;
+      }
 
-  <h2>Before You Proceed</h2>
-  <ul>
-    <li>Never share personal information.</li>
-    <li>Use anonymous usernames and strong passwords.</li>
-    <li>Do not reuse credentials from other websites.</li>
-    <li>
-      Use an operating system designed for anonymity if possible (e.g., Tails).
-    </li>
-  </ul>
+      h2 {
+        font-size: 3rem;
+      }
 
-  <p>
-    By using this site, you agree to follow safe browsing practices and take
-    full responsibility for your anonymity and security.
-  </p>
+      span {
+        font-size: 120%;
+        font-style: italic;
+      }
+
+      p {
+        text-align: justify;
+        margin-top: 10%;
+        line-height: 2.5rem;
+        font-weight: bold;
+      }
+    }
+  </style>
+  <section class="sub">
+    <h1>Welcome to The Dark Web!</h1>
+    <span>Beyond the Surface — Into the Shadows of the Internet!</span>
+  </section>
+  <section class="sub" id="history">
+    <h2>Histroy of the dark web</h2>
+    <p>
+      The Dark Web traces back to the 1990s, when researchers at the U.S. Naval
+      Research Laboratory began developing ways to ensure anonymous
+      communication over the internet. This led to the creation of Tor (The
+      Onion Router), a network that anonymizes traffic using layered encryption.
+      Initially designed for military and government use, Tor was later released
+      as open-source software in 2002, allowing anyone to access the internet
+      anonymously. Over time, this enabled the creation of hidden websites
+      accessible only through the Tor network — these sites use “.onion” domains
+      and became the foundation of what we now call the Dark Web. The term
+      gained wider recognition around 2011 with the rise of marketplaces like
+      Silk Road, where users could buy illegal goods using Bitcoin. Although
+      authorities shut down Silk Road in 2013, many similar platforms emerged in
+      its place. Today, the Dark Web is a controversial space — known both for
+      enabling privacy and freedom of speech in oppressive regimes, and for
+      facilitating illegal activities such as drug trafficking, data breaches,
+      and cybercrime.
+    </p>
+  </section>
+  <section class="sub" id="safties">
+    <h2>Safties of the dark web</h2>
+    <p>
+      Accessing the Dark Web requires strict safety measures to protect your
+      privacy and security. Since this hidden part of the internet is often
+      unregulated and filled with malicious actors, it's essential to use tools
+      like the Tor Browser, which hides your IP address and encrypts your
+      traffic. To stay safe, users should never reveal personal information,
+      avoid downloading unknown files, and steer clear of illegal content, which
+      can carry serious legal consequences. Using a Virtual Private Network
+      (VPN) in combination with Tor can provide an extra layer of anonymity.
+      It's also recommended to browse using a virtual machine or a live
+      operating system like Tails to isolate your activity from your main
+      system. Trusting random sites or marketplaces is risky, as many are scams
+      or contain malware. Ultimately, the safest way to explore the Dark Web is
+      with caution, anonymity, and clear boundaries, ensuring that you don’t
+      unintentionally expose yourself to threats or criminal liability.
+    </p>
+  </section>
+  <section class="sub" id="about">
+    <h2>About Us</h2>
+    <p>
+      Why would you ask that? This is the Dark Web, not a school project. We
+      believe in privacy, anonymity, and keeping our noses (and names) out of
+      your business — and we expect the same courtesy. Just think of us as a
+      friendly shadow: always here, never seen.
+
+      Want to learn more ? <a href="/about"><b>Click Here</b></a> <a style="text-decoration: none;">&rarr;</a>
+    </p>
+  </section>
 </section>
-<section>{{template "footer" .}}</section>
 {{end}}

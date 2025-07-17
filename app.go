@@ -1,25 +1,19 @@
 package main
 
 import (
+	"dark-web/config"
 	"dark-web/server"
 	"log/slog"
 	"net/http"
-	"os"
 )
 
 func main() {
 	_mux := server.New()
+	_port := config.New()
 	_server := http.Server{
-		Addr:    ":80",
+		Addr:    _port,
 		Handler: _mux,
 	}
-	slog.SetDefault(
-		slog.New(
-			slog.NewJSONHandler(
-				os.Stdout, nil,
-			),
-		),
-	)
 	slog.Info(
 		"Starting server...",
 		"url",
