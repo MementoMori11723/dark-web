@@ -8,7 +8,7 @@ services:
     expose:
       - "80"
     networks:
-      - darknet
+      - deploy_net 
 
   tor:
     build:
@@ -17,8 +17,8 @@ services:
     container_name: tor
     restart: always
     networks:
-      - darknet
+      - deploy_net
 
 networks:
-  darknet:
-    driver: bridge
+  deploy_net:
+    external: true
