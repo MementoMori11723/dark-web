@@ -1,6 +1,7 @@
 package server
 
 import (
+	"dark-web/config"
 	"embed"
 	"html/template"
 	"log/slog"
@@ -106,7 +107,7 @@ func errorPage(w http.ResponseWriter, r *http.Request) {
 
 func middleware(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Add("Onion-Location", "http://darkwebesfjvte55dyjbkf5epqnce5g3td3rzpco7qehpwxrdrevwuyd.onion")
+		w.Header().Add("Onion-Location", config.GetUrl())
 		next.ServeHTTP(w, r)
 	})
 }
