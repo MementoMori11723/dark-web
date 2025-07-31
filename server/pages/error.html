@@ -4,10 +4,26 @@
 <!-- Content -->
 {{define "main"}}
 <section>
-  <style></style>
-  <h2>{{.Title}}</h2>
-  <p>This is due to:</p>
-  <p>{{.Msg}}</p>
+  <style>
+    h1 {
+      font-size: 7rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+    }
+
+    h1 h2 {
+      text-align: center;
+    }
+
+    p {
+      text-align: justify;
+      line-height: 2.5rem;
+    }
+  </style>
+  <h1>{{.Title}}</h1>
+  <h2><b>{{.Msg}}</b></h2>
   <p>Please check the URL or go back to the <a href="/#">homepage</a>.</p>
   <p>If the issue continues, it may be a server or network problem.</p>
 </section>
