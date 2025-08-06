@@ -5,47 +5,53 @@
   <!-- Meta Data -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A simple website served on the dark web" />
+  <meta name="keywords" content="dark web, anonymous, privacy, onion network" />
+  <meta name="author" content="John Doe" />
   <title>{{ template "title" .}}</title>
   <link rel="icon" href="/assets/tor.png" />
+
+  <!-- dns prefetch -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  <link prefetch
+    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet" />
 
   <!-- Google Icons -->
-  <link rel="stylesheet"
+  <link rel="stylesheet" prefetch
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
 
   <!-- Pico CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-
-  <!-- Alpine.js Plugins -->
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- Alpine.js -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link prefetch rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
 
   <!-- Custom Code -->
   <style>
     :root {
+      --theme: white;
       --pico-font-family: "Anonymous Pro", monospace;
       --pico-background-color: #06070e;
-      --pico-color: white;
+      --pico-color: var(--theme);
       --pico-primary: #ec4e20;
       --pico-primary-hover: #ec4e20;
 
       scroll-behavior: smooth;
-      scroll-padding: 12%;
+      scroll-padding: 15%;
     }
 
     [data-theme="light"],
     :root:not([data-theme="dark"]),
     :host(:not([data-theme="dark"])) {
       color-scheme: light;
+      --theme: #06070e;
       --pico-background-color: white;
-      --pico-color: #06070e;
+      --pico-color: var(--theme);
       --pico-primary: #ec4e20;
       --pico-primary-hover: #ec4e20;
     }
@@ -63,25 +69,35 @@
         font-weight: bold;
 
         a {
+          color: var(--theme);
           text-decoration: none;
+          border: solid 2px var(--pico-background-color);
+
+          @media (hover: hover) {
+            &:hover {
+              border: solid 2px var(--pico-primary);
+            }
+          }
+        }
+      }
+    }
+
+    .mode {
+      border: none;
+      background-color: transparent;
+      color: var(--pico-primary);
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--pico-primary);
+          color: white;
         }
       }
 
-      .mode {
-        text-decoration: none;
-
-        @media (hover: hover) {
-          &:hover {
-            background-color: var(--pico-color);
-            color: white;
-          }
-        }
-
-        @media (hover: none) {
-          & {
-            background-color: var(--pico-color);
-            color: white;
-          }
+      @media (hover: none) {
+        & {
+          background-color: var(--pico-primary);
+          color: white;
         }
       }
     }
@@ -99,7 +115,7 @@
         position: fixed;
         display: flex;
         background-color: var(--pico-background-color);
-        animation: slideIn 0.5s ease-in-out forwards;
+        animation: slideIn 0.2s ease-in-out forwards;
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -108,7 +124,7 @@
         height: 100vh;
         width: 50%;
         top: 0;
-        left: 100;
+        left: 50vw;
       }
     }
 
@@ -152,19 +168,19 @@
   <nav class="container-fluid" id="navbar">
     <ul>
       <li id="logo">
-        <a href="/">Dark Web</a>
+        <a href="/">The Dark Web</a>
       </li>
     </ul>
     <template x-if="mobileView">
       <ul>
         <li>
-          <a @click="showSidebar = !showSidebar">
-            <span class="material-symbols-outlined"> menu </span>
-          </a>
+          <button class="outline" style="border: none" @click="showSidebar = !showSidebar">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
         </li>
       </ul>
     </template>
-    <template x-if="!mobileView"> {{ template "links" .}} </template>
+    <template x-if="!mobileView">{{ template "links" .}}</template>
   </nav>
 
   <!-- Sidebar -->
@@ -181,6 +197,12 @@
   <footer class="container" style="text-align: center">
     <p>&copy; Hidden Service — Privacy is Freedom — Stay safe</p>
   </footer>
+
+  <!-- Alpine.js Plugins -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 
 </html>
@@ -201,9 +223,9 @@
     <a href="/#about"><b>About</b></a>
   </li>
   <li>
-    <a class="mode" @click="$data.theme = ($data.theme === 'light') ? 'dark' : 'light'">
+    <button class="mode" @click="$data.theme = ($data.theme === 'light') ? 'dark' : 'light'">
       <b x-text="($data.theme === 'light') ? 'Dark mode' : 'Light mode'"></b>
-    </a>
+    </button>
   </li>
 </ul>
 {{end}}
